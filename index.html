@@ -13,11 +13,11 @@
   </head>
   <body>
     <header>
-      <input type="text" placeholder="Search...">
+      <input type="text" class="search-input" placeholder="Search...">
       <button type="submit"><i class="fa fa-search"></i></button>
     </header>
     <main>
-      <ul class="movies list">
+      <ul class="movies-list">
 
 
       </ul>
@@ -25,12 +25,12 @@
 
     <!-- Template movie list -->
     <script id="movie-template" type="text/x-handlebars-template">
-      <div class="single-movie">
-        <h2 class="title"></h2>
-        <h3 class="original-title"></h3>
-        <p class="language"></p>
-        <h4 class="vote"></h4>  
-      </div>
+      <li class="single-movie">
+        <h2 class="title">{{title}}</h2>
+        <h3 class="original-title">{{originalTitle}}</h3>
+        <p class="language">{{language}}</p>
+        <h4 class="vote">{{vote}}</h4>
+      </li>
     </script>
   <script src="js/script.js" charset="utf-8"></script>
   </body>
