@@ -10,11 +10,11 @@ $(document).ready(function (){
           "api_key": "9d6252a7271af37aade1820cead19342",
           "query": searchText,
           "language": "it-IT",
-          "include_adult": "false"
+          "include_adult": "false",
         },
         "method": "GET",
         "success": function(data) {
-          renderMovie(data);
+          renderMovie(data.results);
         },
         "error": function (err) {
           alert("E' successo qualcosa");
@@ -28,15 +28,16 @@ $(document).ready(function (){
     var template = Handlebars.compile(source);
 
     for (var i = 0; i<movies.length; i++) {
+      console.log(movies[i]);
       var context = {
         "title": movies[i].title,
-        "original-title": movies[i].original_title,
+        "originalTitle": movies[i].original_title,
         "language": movies[i].original_language,
         "vote": movies[i].vote_average,
       };
+      var html = template(context);
+      $(".movies-list").append(html);
     }
-    var html = template(context);
-    $("#movie-template").append(html);
   }
 });
 });
