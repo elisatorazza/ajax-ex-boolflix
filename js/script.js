@@ -20,17 +20,17 @@ $(document).ready(function (){
 
     for (var i = 0; i<movies.length; i++) {
       var vote = parseInt(Math.ceil(movies[i].vote_average) / 2); //Trasformo il voto in un numero da 0 a 5 arrotondato per eccesso
-
+      //Ciclo la lunghezza del voto, in modo da creare ad ogni ciclo una stella
+        var starList = [];
         for (var j = 0; j<vote; j++) {
-          var star = $("<i class='fas fa-star'></i>");
-          console.log(star);
+          var star = "<i class='fas fa-star'></i>";
+          starList.push(star);
         }
-      console.log(vote);
       var context = {
         "title": movies[i].title,
         "originalTitle": movies[i].original_title,
         "language": movies[i].original_language,
-        "vote": star,
+        "vote": starList,
       };
       var html = template(context);
       $(".movies-list").append(html);
