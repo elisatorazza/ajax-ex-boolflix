@@ -35,35 +35,35 @@ $(document).ready(function (){
       var flagList = [
         {
           "name": "de",
-          "img": "../img/de.svg",
+          "img": "<img src='img/de.svg' alt=''>",
         },
         {
           "name": "es",
-          "img": "../img/es.svg",
+          "img": "<img src='img/es.svg' alt=''>",
         },
         {
           "name": "fr",
-          "img": "../img/fr.svg",
+          "img": "<img src='img/fr.svg' alt=''>",
         },
         {
           "name": "en",
-          "img": "../img/gb.svg",
+          "img": "<img src='img/en.svg' alt=''>",
         },
         {
           "name": "it",
-          "img": "../img/it.svg",
+          "img": "<img src='img/it.svg' alt=''>",
         },
         {
           "name": "nl",
-          "img": "../img/nl.svg",
+          "img": "<img src='img/nl.svg' alt=''>",
         },
         {
           "name": "ru",
-          "img": "../img/ru.svg",
+          "img": "<img src='img/ru.svg' alt=''>",
         },
         {
           "name": "us",
-          "img": "../img/us.svg",
+          "img": "<img src='img/us.svg' alt=''>",
         },
     ];
 
@@ -80,7 +80,6 @@ $(document).ready(function (){
         "language": flagImg,
         "vote": starList,
       };
-      console.log(context.language);
       var html = template(context);
       $(".movies-list").append(html);
     }

@@ -20,16 +20,14 @@
     <main>
       <ul class="movies-list">
 
-
       </ul>
     </main>
-
     <!-- Template movie list -->
     <script id="movie-template" type="text/x-handlebars-template">
       <li class="single-movie">
         <h2 class="title">{{title}}</h2>
         <h3 class="original-title">{{originalTitle}}</h3>
-        <p class="language">{{language}}</p>
+        <p class="language">{{{language}}}</p>
         <h4 class="opinion">{{{vote}}}
         </h4>
       </li>
