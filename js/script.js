@@ -34,45 +34,53 @@ $(document).ready(function (){
       //Creo un array di bandiere
       var flagList = [
         {
-          "name": "de-DE",
+          "name": "de",
           "img": "../img/de.svg",
         },
         {
-          "name": "es-ES",
+          "name": "es",
           "img": "../img/es.svg",
         },
         {
-          "name": "fr-FR",
+          "name": "fr",
           "img": "../img/fr.svg",
         },
         {
-          "name": "en-UK",
+          "name": "en",
           "img": "../img/gb.svg",
         },
         {
-          "name": "it-IT",
+          "name": "it",
           "img": "../img/it.svg",
         },
         {
-          "name": "nl-NL",
+          "name": "nl",
           "img": "../img/nl.svg",
         },
         {
-          "name": "ru-RU",
+          "name": "ru",
           "img": "../img/ru.svg",
         },
         {
-          "name": "en-US",
+          "name": "us",
           "img": "../img/us.svg",
         },
     ];
 
+      for (var y =0; y<flagList.length; y++) {
+        if (flagList[y].name == movies[i].original_language) {
+          var flagImg = flagList[y].img
+          console.log(flagImg);
+        }
+      }
+
       var context = {
         "title": movies[i].title,
         "originalTitle": movies[i].original_title,
-        "language": movies[i].original_language,
+        "language": flagImg,
         "vote": starList,
       };
+      console.log(context.language);
       var html = template(context);
       $(".movies-list").append(html);
     }
