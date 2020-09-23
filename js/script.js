@@ -66,22 +66,24 @@ $(document).ready(function (){
           "img": "<img src='img/us.svg' alt='American'>",
         },
     ];
-
+      //Definisco la variabile dell'immagine
       var flagImg = movies[i].original_language;
-
+      //Ciclo l'array che contiene le immagini delle bandiere e nel caso sovrascrivo la variabile
       for (var y =0; y<flagList.length; y++) {
         if (flagList[y].name === movies[i].original_language) {
-          var flagImg = flagList[y].img;
-          console.log (flagImg);
+          flagImg = flagList[y].img;
         }
       }
 
       var context = {
         "title": movies[i].title,
+        "name": movies[i].name,
         "originalTitle": movies[i].original_title,
+        "originalName": movies[i].original_name,
         "language": flagImg,
         "vote": starList,
       };
+
       var html = template(context);
       $(".movies-list").append(html);
     }
@@ -90,7 +92,25 @@ $(document).ready(function (){
   function getMovies(searchString) {
     $.ajax(
       {
-        "url":"https://api.themoviedb.org/3/search/movie",
+        "url": "https://api.themoviedb.org/3/search/movie",
+        "data": {
+          "api_key": "9d6252a7271af37aade1820cead19342",
+          "query": searchString,
+          "language": "it-IT",
+          "include_adult": "false",
+        },
+        "method": "GET",
+        "success": function(data) {
+          renderMovie(data.results);
+        },
+        "error": function (err) {
+          alert("E' successo qualcosa");
+        }
+      }
+    );
+    $.ajax(
+      {
+        "url": "https://api.themoviedb.org/3/search/tv",
         "data": {
           "api_key": "9d6252a7271af37aade1820cead19342",
           "query": searchString,
@@ -112,4 +132,7 @@ $(document).ready(function (){
     $(".movies-list").empty();
     $(".search-input").val("");
   }
+// Allarghiamo poi la ricerca anche alle serie tv. Con la stessa azione di ricerca dovremo prendere sia i film che corrispondono alla query, sia le serie tv, stando attenti ad avere alla fine dei valori simili (le serie e i film hanno campi nel JSON di risposta diversi, simili ma non sempre identici)
+
+
 });
