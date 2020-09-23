@@ -67,14 +67,13 @@ $(document).ready(function (){
         },
     ];
 
+      var flagImg = movies[i].original_language;
+
       for (var y =0; y<flagList.length; y++) {
         if (flagList[y].name === movies[i].original_language) {
           var flagImg = flagList[y].img;
           console.log (flagImg);
-        }  else if (movies[i].original_language != flagList[y].name) {
-          var flagImg = movies[i].original_language;
-          console.log (flagImg);
-         }
+        }
       }
 
       var context = {
