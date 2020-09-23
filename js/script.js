@@ -35,43 +35,46 @@ $(document).ready(function (){
       var flagList = [
         {
           "name": "de",
-          "img": "<img src='img/de.svg' alt=''>",
+          "img": "<img src='img/de.svg' alt='German'>",
         },
         {
           "name": "es",
-          "img": "<img src='img/es.svg' alt=''>",
+          "img": "<img src='img/es.svg' alt='Spanish'>",
         },
         {
           "name": "fr",
-          "img": "<img src='img/fr.svg' alt=''>",
+          "img": "<img src='img/fr.svg' alt='French'>",
         },
         {
           "name": "en",
-          "img": "<img src='img/en.svg' alt=''>",
+          "img": "<img src='img/gb.svg' alt='English'>",
         },
         {
           "name": "it",
-          "img": "<img src='img/it.svg' alt=''>",
+          "img": "<img src='img/it.svg' alt='Italian'>",
         },
         {
           "name": "nl",
-          "img": "<img src='img/nl.svg' alt=''>",
+          "img": "<img src='img/nl.svg' alt='Dutch'>",
         },
         {
           "name": "ru",
-          "img": "<img src='img/ru.svg' alt=''>",
+          "img": "<img src='img/ru.svg' alt='Russian'>",
         },
         {
           "name": "us",
-          "img": "<img src='img/us.svg' alt=''>",
+          "img": "<img src='img/us.svg' alt='American'>",
         },
     ];
 
       for (var y =0; y<flagList.length; y++) {
-        if (flagList[y].name == movies[i].original_language) {
-          var flagImg = flagList[y].img
-          console.log(flagImg);
-        }
+        if (flagList[y].name === movies[i].original_language) {
+          var flagImg = flagList[y].img;
+          console.log (flagImg);
+        }  else if (movies[i].original_language != flagList[y].name) {
+          var flagImg = movies[i].original_language;
+          console.log (flagImg);
+         }
       }
 
       var context = {
