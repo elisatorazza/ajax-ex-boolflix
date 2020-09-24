@@ -29,58 +29,16 @@ $(document).ready(function (){
         }
         var starList = emptyStar.join(' '); //Tolgo le virgole dagli elementi dell'array
 
-        // Trasformiamo poi la stringa statica della lingua in una vera e propria bandiera della nazione corrispondente, gestendo il caso in cui non abbiamo la bandiera della nazione ritornata dall’API (le flag non ci sono in FontAwesome).
 
-      //Creo un array di bandiere
-      var flagList = [
-        {
-          "name": "de",
-          "img": "<img src='img/de.svg' alt='German'>",
-        },
-        {
-          "name": "es",
-          "img": "<img src='img/es.svg' alt='Spanish'>",
-        },
-        {
-          "name": "fr",
-          "img": "<img src='img/fr.svg' alt='French'>",
-        },
-        {
-          "name": "en",
-          "img": "<img src='img/gb.svg' alt='English'>",
-        },
-        {
-          "name": "it",
-          "img": "<img src='img/it.svg' alt='Italian'>",
-        },
-        {
-          "name": "nl",
-          "img": "<img src='img/nl.svg' alt='Dutch'>",
-        },
-        {
-          "name": "ru",
-          "img": "<img src='img/ru.svg' alt='Russian'>",
-        },
-        {
-          "name": "us",
-          "img": "<img src='img/us.svg' alt='American'>",
-        },
-    ];
-      //Definisco la variabile dell'immagine
-      var flagImg = movies[i].original_language;
-      //Ciclo l'array che contiene le immagini delle bandiere e nel caso sovrascrivo la variabile
-      for (var y =0; y<flagList.length; y++) {
-        if (flagList[y].name === movies[i].original_language) {
-          flagImg = flagList[y].img;
-        }
-      }
+
+
 
       var context = {
         "title": movies[i].title,
         "name": movies[i].name,
         "originalTitle": movies[i].original_title,
         "originalName": movies[i].original_name,
-        "language": flagImg,
+        "language": getLanguage(),
         "vote": starList,
         "poster": movies[i].poster_path,
       };
@@ -134,6 +92,51 @@ $(document).ready(function (){
     $(".movies-list").empty();
     $(".search-input").val("");
   }
-
-
+  // Trasformiamo poi la stringa statica della lingua in una vera e propria bandiera della nazione corrispondente, gestendo il caso in cui non abbiamo la bandiera della nazione ritornata dall’API.
+  //Creo un array di bandiere
+  function getLanguage (FlagList, movies) {
+    var flagList = [
+    {
+      "name": "de",
+      "img": "<img src='img/de.svg' alt='German'>",
+    },
+    {
+      "name": "es",
+      "img": "<img src='img/es.svg' alt='Spanish'>",
+    },
+    {
+      "name": "fr",
+      "img": "<img src='img/fr.svg' alt='French'>",
+    },
+    {
+      "name": "en",
+      "img": "<img src='img/gb.svg' alt='English'>",
+    },
+    {
+      "name": "it",
+      "img": "<img src='img/it.svg' alt='Italian'>",
+    },
+    {
+      "name": "nl",
+      "img": "<img src='img/nl.svg' alt='Dutch'>",
+    },
+    {
+      "name": "ru",
+      "img": "<img src='img/ru.svg' alt='Russian'>",
+    },
+    {
+      "name": "us",
+      "img": "<img src='img/us.svg' alt='American'>",
+    },
+  ];
+  //Definisco la variabile dell'immagine
+  var flagImg = movies[i].original_language;
+  //Ciclo l'array che contiene le immagini delle bandiere e nel caso sovrascrivo la variabile
+  for (var y =0; y<flagList.length; y++) {
+    if (flagList[y].name === movies[i].original_language) {
+      return flagImg = flagList[y].img;
+    }
+  }
+  return flagImg
+}
 });
