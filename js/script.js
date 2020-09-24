@@ -5,7 +5,7 @@ $(document).ready(function (){
     resetString();
     getMovies(searchText);
   });
-//evento click tasto enter
+  //evento click tasto enter
   $(".search-input").keyup(function(event){
     if (event.which == 13) {
       var searchText = $(".search-input").val();
@@ -13,7 +13,7 @@ $(document).ready(function (){
       getMovies(searchText);
     }
   });
-//funzione per prendere il template, modificarlo, e inserirlo nel testo
+  //funzione per prendere il template, modificarlo, e inserirlo nel testo
   function renderMovie (movies) {
     var source = $("#movie-template").html();
     var template = Handlebars.compile(source);
@@ -29,7 +29,7 @@ $(document).ready(function (){
         }
         var starList = emptyStar.join(' '); //Tolgo le virgole dagli elementi dell'array
 
-// Trasformiamo poi la stringa statica della lingua in una vera e propria bandiera della nazione corrispondente, gestendo il caso in cui non abbiamo la bandiera della nazione ritornata dall’API (le flag non ci sono in FontAwesome).
+        // Trasformiamo poi la stringa statica della lingua in una vera e propria bandiera della nazione corrispondente, gestendo il caso in cui non abbiamo la bandiera della nazione ritornata dall’API (le flag non ci sono in FontAwesome).
 
       //Creo un array di bandiere
       var flagList = [
@@ -82,6 +82,7 @@ $(document).ready(function (){
         "originalName": movies[i].original_name,
         "language": flagImg,
         "vote": starList,
+        "poster": movies[i].poster_path,
       };
 
       var html = template(context);
@@ -108,6 +109,7 @@ $(document).ready(function (){
         }
       }
     );
+    // Allarghiamo poi la ricerca anche alle serie tv. Con la stessa azione di ricerca dovremo prendere sia i film che corrispondono alla query, sia le serie tv, stando attenti ad avere alla fine dei valori simili (le serie e i film hanno campi nel JSON di risposta diversi, simili ma non sempre identici)
     $.ajax(
       {
         "url": "https://api.themoviedb.org/3/search/tv",
@@ -132,7 +134,6 @@ $(document).ready(function (){
     $(".movies-list").empty();
     $(".search-input").val("");
   }
-// Allarghiamo poi la ricerca anche alle serie tv. Con la stessa azione di ricerca dovremo prendere sia i film che corrispondono alla query, sia le serie tv, stando attenti ad avere alla fine dei valori simili (le serie e i film hanno campi nel JSON di risposta diversi, simili ma non sempre identici)
 
 
 });
