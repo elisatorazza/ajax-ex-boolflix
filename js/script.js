@@ -48,14 +48,13 @@ $(document).ready(function (){
     if (movies[i].poster_path == null) {
       poster = "img/no_poster.png";
     }
-    $("li.single-movie").css("background-image", poster)
-    
       var context = {
         "title": movies[i].title || movies[i].name,
         "originalTitle": movies[i].original_title ||movies[i].original_name,
         "language": getLanguage(movies[i].original_language),
         "vote": printStars(movies[i].vote_average),
-        //"poster": poster,
+        "poster": poster,
+        "overview": movies[i].overview,
       };
 
       var html = template(context);

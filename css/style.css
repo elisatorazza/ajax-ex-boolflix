@@ -10,6 +10,9 @@ body {
 .none {
   display: none;
 }
+.relative {
+  position: relative;
+}
 .container {
   padding: 0 20px;
   display: flex;
@@ -34,7 +37,7 @@ main {
   background-color: #434343;
   max-width: 100%;
 }
-h2 {
+h2.movies{
   text-align: center;
   color: #E70000;
   line-height: 50px;
@@ -52,12 +55,34 @@ h2 {
 /* Template handlebars */
 li.single-movie{
   justify-content: space-around;
-  border: 1px solid #FFF;
   list-style: none;
-  width: 342px;
   height: auto;
   background-size: cover;
+  margin: 15px 0;
 }
-.card {
+.image-poster {
   width: 342px;
+  height: auto;
+
+}
+img.card {
+  border: 1px solid #FFF;
+  object-fit: cover;
+}
+.description {
+  background-color: #000;
+  color: #FFF;
+  width: 344px;
+  padding: 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+}
+.opinion {
+  color: #FFBD00;
+}
+.overview {
+  position: relative;
+  overflow: hidden;
 }
