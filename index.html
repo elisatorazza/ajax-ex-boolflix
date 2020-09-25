@@ -2,6 +2,8 @@
 <html lang="en" dir="ltr">
   <head>
     <link rel="stylesheet" href="css/style.css">
+    <!-- Link google font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
     <!-- Link fontawesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
     <!-- /Link jquery -->
@@ -13,20 +15,27 @@
     <title>Boolflix</title>
   </head>
   <body>
-    <header>
-      <input type="text" class="search-input" placeholder="Search...">
-      <button type="submit"><i class="fa fa-search"></i></button>
-    </header>
-    <main>
-      <h2>Movies</h2>
-      <ul class="movies-list">
 
-      </ul>
-      <!-- <h2>Series</h2>
-      <ul class="series-list">
+      <header>
+        <div class="container">
+          <h1>BOOLFLIX</h1>
+          <div class="search-wrapper">
+            <input type="text" class="search-input" placeholder="Search...">
+            <button type="submit"><i class="fa fa-search"></i></button>
+          </div>
+        </div>
+      </header>
+      <main>
+        <h2>Movies</h2>
+        <ul class="movies-list">
 
-      </ul> -->
-    </main>
+        </ul>
+        <!-- <h2>Series</h2>
+        <ul class="series-list">
+
+        </ul> -->
+      </main>
+
     <!-- Template movie list -->
     <script id="movie-template" type="text/x-handlebars-template">
       <li class="single-movie">

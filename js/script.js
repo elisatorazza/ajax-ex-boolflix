@@ -1,20 +1,43 @@
 $(document).ready(function (){
 //evento click sul bottone
   $("header button").click(function(){
-    var searchText = $(".search-input").val();
-    resetString();
-    getData("tv", searchText);
-    getData("movie", searchText);
+    search()
   });
   //evento click tasto enter
   $(".search-input").keyup(function(event){
     if (event.which == 13) {
-      var searchText = $(".search-input").val();
-      resetString();
-      getData("tv", searchText);
-      getData("movie", searchText);
+    search()
     }
   });
+
+  function search() {
+    var searchText = $(".search-input").val();
+    resetString();
+    getData("tv", searchText);
+    getData("movie", searchText);
+  }
+  //funzione per effettuare chiamata al server e ottenere un i valori contenuti nelle chiavi dell'oggetto result
+
+    function getData (type, searchString) {
+      $.ajax(
+      {
+        "url": "https://api.themoviedb.org/3/search/"+type,
+        "data": {
+          "api_key": "9d6252a7271af37aade1820cead19342",
+          "query": searchString,
+          "language": "it-IT",
+          "include_adult": "false",
+        },
+        "method": "GET",
+        "success": function(data) {
+          renderData(data.results);
+        },
+        "error": function (err) {
+          alert("E' successo qualcosa");
+        }
+      }
+    );
+  }
   //funzione per prendere il template, modificarlo, e inserirlo nel testo
   function renderData (movies) {
     var source = $("#movie-template").html();
@@ -37,32 +60,6 @@ $(document).ready(function (){
       $(".movies-list").append(html);
     }
   }
-//funzione per effettuare chiamata al server e ottenere un i valori contenuti nelle chiavi dell'oggetto result
-
-  function getData (type, searchString) {
-    $.ajax(
-    {
-      "url": "https://api.themoviedb.org/3/search/"+type,
-      "data": {
-        "api_key": "9d6252a7271af37aade1820cead19342",
-        "query": searchString,
-        "language": "it-IT",
-        "include_adult": "false",
-      },
-      "method": "GET",
-      "success": function(data) {
-        renderData(data.results);
-      },
-      "error": function (err) {
-        alert("E' successo qualcosa");
-      }
-    }
-  );
-}
-//   function getSeries(searchString) {
-//     // Allarghiamo poi la ricerca anche alle serie tv. Con la stessa azione di ricerca dovremo prendere sia i film che corrispondono alla query, sia le serie tv, stando attenti ad avere alla fine dei valori simili (le serie e i film hanno campi nel JSON di risposta diversi, simili ma non sempre identici)
-//
-// }
 
 // funzione per resettare input e lista
   function resetString() {
@@ -122,11 +119,11 @@ function getLanguage (lang) {
 //Definisco la variabile dell'immagine
 var flagImg = lang;
 //Ciclo l'array che contiene le immagini delle bandiere e nel caso sovrascrivo la variabile
-for (var y =0; y<flagList.length; y++) {
-  if (flagList[y].name === lang) {
-    return flagImg = flagList[y].img;
+  for (var y =0; y<flagList.length; y++) {
+    if (flagList[y].name === lang) {
+      return flagImg = flagList[y].img;
+    }
   }
-}
-return flagImg;
-}
+  return flagImg;
+  }
 });

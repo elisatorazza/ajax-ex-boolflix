@@ -1,11 +1,28 @@
+/* Mix */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
-header {
+body {
+  font-family: 'Montserrat', sans-serif;
+}
+.container {
+  padding: 0 20px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+}
+/* Mix */
+header {
+  height: 100px;
+  background-color: #000;
+}
+h1 {
+  color: #E70000;
+  line-height:100px;
+}
+.search-wrapper {
+  line-height: 100px;
 }
 .none {
   display: none;
