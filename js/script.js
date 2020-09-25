@@ -3,41 +3,46 @@ $(document).ready(function (){
   $("header button").click(function(){
     var searchText = $(".search-input").val();
     resetString();
-    getMovies(searchText);
+    getData("tv", searchText);
+    getData("movie", searchText);
   });
   //evento click tasto enter
   $(".search-input").keyup(function(event){
     if (event.which == 13) {
       var searchText = $(".search-input").val();
       resetString();
-      getMovies(searchText);
+      getData("tv", searchText);
+      getData("movie", searchText);
     }
   });
   //funzione per prendere il template, modificarlo, e inserirlo nel testo
-  function renderMovie (movies) {
+  function renderData (movies) {
     var source = $("#movie-template").html();
     var template = Handlebars.compile(source);
 
   for (var i = 0; i<movies.length; i++) {
+    var poster = "https://image.tmdb.org/t/p/w185" +movies[i].poster_path;
+    if (movies[i].poster_path == null) {
+      poster = "img/no_poster.png";
+    }
       var context = {
-        "title": movies[i].title,
-        "name": movies[i].name,
-        "originalTitle": movies[i].original_title,
-        "originalName": movies[i].original_name,
+        "title": movies[i].title || movies[i].name,
+        "originalTitle": movies[i].original_title ||movies[i].original_name,
         "language": getLanguage(movies[i].original_language),
         "vote": printStars(movies[i].vote_average),
-        "poster": movies[i].poster_path,
+        "poster": poster,
       };
 
       var html = template(context);
       $(".movies-list").append(html);
     }
   }
-//funzione per effettuare chiamata al server e ottenere il risultato
-function getMovies(searchString) {
-  $.ajax(
+//funzione per effettuare chiamata al server e ottenere un i valori contenuti nelle chiavi dell'oggetto result
+
+  function getData (type, searchString) {
+    $.ajax(
     {
-      "url": "https://api.themoviedb.org/3/search/movie",
+      "url": "https://api.themoviedb.org/3/search/"+type,
       "data": {
         "api_key": "9d6252a7271af37aade1820cead19342",
         "query": searchString,
@@ -46,26 +51,7 @@ function getMovies(searchString) {
       },
       "method": "GET",
       "success": function(data) {
-        renderMovie(data.results);
-      },
-      "error": function (err) {
-        alert("E' successo qualcosa");
-      }
-    }
-  );
-    // Allarghiamo poi la ricerca anche alle serie tv. Con la stessa azione di ricerca dovremo prendere sia i film che corrispondono alla query, sia le serie tv, stando attenti ad avere alla fine dei valori simili (le serie e i film hanno campi nel JSON di risposta diversi, simili ma non sempre identici)
-  $.ajax(
-    {
-      "url": "https://api.themoviedb.org/3/search/tv",
-      "data": {
-        "api_key": "9d6252a7271af37aade1820cead19342",
-        "query": searchString,
-        "language": "it-IT",
-        "include_adult": "false",
-      },
-      "method": "GET",
-      "success": function(data) {
-        renderMovie(data.results);
+        renderData(data.results);
       },
       "error": function (err) {
         alert("E' successo qualcosa");
@@ -73,6 +59,11 @@ function getMovies(searchString) {
     }
   );
 }
+//   function getSeries(searchString) {
+//     // Allarghiamo poi la ricerca anche alle serie tv. Con la stessa azione di ricerca dovremo prendere sia i film che corrispondono alla query, sia le serie tv, stando attenti ad avere alla fine dei valori simili (le serie e i film hanno campi nel JSON di risposta diversi, simili ma non sempre identici)
+//
+// }
+
 // funzione per resettare input e lista
   function resetString() {
     $(".movies-list").empty();
