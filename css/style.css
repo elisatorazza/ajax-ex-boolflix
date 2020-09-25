@@ -59,11 +59,14 @@ li.single-movie{
   height: auto;
   background-size: cover;
   margin: 15px 0;
+  overflow: hidden;
+}
+li.single-movie:hover div.description{
+  display: block;
 }
 .image-poster {
   width: 342px;
   height: auto;
-
 }
 img.card {
   border: 1px solid #FFF;
@@ -78,11 +81,8 @@ img.card {
   top: 0;
   left: 0;
   height: 100%;
+  text-align: center;
 }
 .opinion {
   color: #FFBD00;
-}
-.overview {
-  position: relative;
-  overflow: hidden;
 }
