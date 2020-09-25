@@ -7,12 +7,16 @@
 body {
   font-family: 'Montserrat', sans-serif;
 }
+.none {
+  display: none;
+}
 .container {
   padding: 0 20px;
   display: flex;
   justify-content: space-between;
 }
 /* Mix */
+/* Header */
 header {
   height: 100px;
   background-color: #000;
@@ -24,9 +28,36 @@ h1 {
 .search-wrapper {
   line-height: 100px;
 }
-.none {
-  display: none;
+/* /Header */
+/* Main */
+main {
+  background-color: #434343;
+  max-width: 100%;
+}
+h2 {
+  text-align: center;
+  color: #E70000;
+  line-height: 50px;
 }
 .language {
   width: 40px;
+}
+.movies-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+/* /Main */
+
+/* Template handlebars */
+li.single-movie{
+  justify-content: space-around;
+  border: 1px solid #FFF;
+  list-style: none;
+  width: 342px;
+  height: auto;
+  background-size: cover;
+}
+.card {
+  width: 342px;
 }

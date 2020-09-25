@@ -44,16 +44,18 @@ $(document).ready(function (){
     var template = Handlebars.compile(source);
 
   for (var i = 0; i<movies.length; i++) {
-    var poster = "https://image.tmdb.org/t/p/w185" +movies[i].poster_path;
+    var poster = "https://image.tmdb.org/t/p/w342" +movies[i].poster_path;
     if (movies[i].poster_path == null) {
       poster = "img/no_poster.png";
     }
+    $("li.single-movie").css("background-image", poster)
+    
       var context = {
         "title": movies[i].title || movies[i].name,
         "originalTitle": movies[i].original_title ||movies[i].original_name,
         "language": getLanguage(movies[i].original_language),
         "vote": printStars(movies[i].vote_average),
-        "poster": poster,
+        //"poster": poster,
       };
 
       var html = template(context);
