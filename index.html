@@ -26,14 +26,14 @@
         </div>
       </header>
       <main>
-        <h2 class="movies">Movies</h2>
+        <h2 class="movies none">Movies</h2>
         <ul class="movies-list">
 
         </ul>
-        <!-- <h2>Series</h2>
+        <h2 class="series none">Series</h2>
         <ul class="series-list">
 
-        </ul> -->
+        </ul>
       </main>
 
     <!-- Template movie list -->
@@ -43,14 +43,20 @@
           <img class="card" src={{poster}}>
         </div>
         <div class="description none">
-          <h2 class="title-name">{{title}}</h2>
-          <h3 class="original-title-name">{{originalTitle}}</h3>
+          <h2 class="title-name">Titolo: {{title}}</h2>
+          <h3 class="original-title-name">Titolo originale: {{originalTitle}}</h3>
           <p class="language">{{{language}}}</p>
           <h4 class="opinion">{{{vote}}}</h4>
           <p class="overview">{{overview}}</p>
         </div>
       </li>
     </script>
+
+    <!-- Template risultati mancanti -->
+    <script id="no-template" type="text/x-handlebars-template">
+      <li class="no-reusults">La ricerca non ha prodotto risultati</li>
+    </script>
+
   <script src="js/script.js" charset="utf-8"></script>
   </body>
 </html>

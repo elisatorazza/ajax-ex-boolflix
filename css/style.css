@@ -37,7 +37,7 @@ main {
   background-color: #434343;
   max-width: 100%;
 }
-h2.movies{
+h2.movies, h2.series{
   text-align: center;
   color: #E70000;
   line-height: 50px;
@@ -45,7 +45,7 @@ h2.movies{
 .language {
   width: 40px;
 }
-.movies-list {
+.movies-list, .series-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
@@ -56,19 +56,17 @@ h2.movies{
 li.single-movie{
   justify-content: space-around;
   list-style: none;
-  height: auto;
+  width: 342px;
   background-size: cover;
   margin: 15px 0;
   overflow: hidden;
+  display: flex;
 }
 li.single-movie:hover div.description{
   display: block;
 }
-.image-poster {
-  width: 342px;
-  height: auto;
-}
 img.card {
+  width: 342px;
   border: 1px solid #FFF;
   object-fit: cover;
 }
@@ -82,6 +80,10 @@ img.card {
   left: 0;
   height: 100%;
   text-align: center;
+}
+.overview {
+  font-size: 14px;
+  text-align: left;
 }
 .opinion {
   color: #FFBD00;

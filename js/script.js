@@ -1,7 +1,7 @@
 $(document).ready(function (){
 //evento click sul bottone
   $("header button").click(function(){
-    search()
+    search();
   });
   //evento click tasto enter
   $(".search-input").keyup(function(event){
@@ -30,7 +30,7 @@ $(document).ready(function (){
         },
         "method": "GET",
         "success": function(data) {
-          renderData(data.results);
+          renderData(type, data.results);
         },
         "error": function (err) {
           alert("E' successo qualcosa");
@@ -39,7 +39,7 @@ $(document).ready(function (){
     );
   }
   //funzione per prendere il template, modificarlo, e inserirlo nel testo
-  function renderData (movies) {
+  function renderData (type, movies) {
     var source = $("#movie-template").html();
     var template = Handlebars.compile(source);
 
@@ -48,6 +48,13 @@ $(document).ready(function (){
     if (movies[i].poster_path == null) {
       poster = "img/no_poster.png";
     }
+
+    if(type=="movie") {
+      var container = $(".movies-list");
+    } else if (type=="tv") {
+      container = $(".series-list")
+    }
+
       var context = {
         "title": movies[i].title || movies[i].name,
         "originalTitle": movies[i].original_title ||movies[i].original_name,
@@ -57,8 +64,13 @@ $(document).ready(function (){
         "overview": movies[i].overview,
       };
 
+      var id = movies[i].id;
+      console.log(id);
+      
       var html = template(context);
-      $(".movies-list").append(html);
+      container.append(html);
+      $(".movies").removeClass("none");
+      $(".series").removeClass("none");
     }
   }
 
